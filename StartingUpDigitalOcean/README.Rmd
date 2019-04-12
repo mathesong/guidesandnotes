@@ -3,7 +3,7 @@ title: "DigitalOcean with analogsea Guide"
 author: Granville J. Matheson
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 # Aims
@@ -11,7 +11,18 @@ output:
 This is my guide for how to get set up with DigitalOcean cloud computing.
 
 
+
+
 # Starting up a docklet
+
+Packages
+
+```{r, eval=FALSE}
+# devtools::install_github("sckott/analogsea")
+library(analogsea)
+```
+
+And the docklet
 
 ```{r, eval=FALSE}
 docklet_create(region="nyc1", image="docker-18-04")
@@ -61,5 +72,14 @@ And then we can download the file
 
 ```{r, eval=FALSE}
 droplet_download(d, "/root/test123.csv", local = "C:/Users/mathe/Dropbox")
+```
+
+## Spaces
+
+I think the way that uploading and downloading is supposed to work is actually to use spaces, using the following commands:
+
+```{r, eval=FALSE}
+space_object_get()
+space_object_put()
 ```
 
