@@ -3,17 +3,24 @@
 This is my guide for how to get set up with DigitalOcean cloud
 computing.
 
+# Starting up a docklet
+
+Packages
+
 ``` r
 # devtools::install_github("sckott/analogsea")
 library(analogsea)
 ```
 
-# Starting up a docklet
+And the docklet. Remove the size argument for a cheaper (\~5 times) but
+less powerful
+machine.
 
 ``` r
-docklet_create(region="nyc1", image="docker-18-04")
+d <- docklet_create(region="ams3", image="docker-18-04", size="s-4vcpu-8gb")
 
-d <- droplets()[[1]]
+Sys.sleep(5)
+d <- as.droplet(d$name)
 
 docklet_rstudio(d, user="username", password="password", 
                 verbose=TRUE, img="rocker/tidyverse")
@@ -61,4 +68,14 @@ file
 
 ``` r
 droplet_download(d, "/root/test123.csv", local = "C:/Users/mathe/Dropbox")
+```
+
+## Spaces
+
+I think the way that uploading and downloading is supposed to work is
+actually to use spaces, using the following commands:
+
+``` r
+space_object_get()
+space_object_put()
 ```

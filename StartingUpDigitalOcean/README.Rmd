@@ -22,12 +22,13 @@ Packages
 library(analogsea)
 ```
 
-And the docklet
+And the docklet. Remove the size argument for a cheaper (~5 times) but less powerful machine.
 
 ```{r, eval=FALSE}
-docklet_create(region="nyc1", image="docker-18-04")
+d <- docklet_create(region="ams3", image="docker-18-04", size="s-4vcpu-8gb")
 
-d <- droplets()[[1]]
+Sys.sleep(5)
+d <- as.droplet(d$name)
 
 docklet_rstudio(d, user="username", password="password", 
                 verbose=TRUE, img="rocker/tidyverse")
